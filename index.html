@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screenshot Blur Tool</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>📸 Screenshot Blur Tool</h1>
+            <p>Proteja dados sensíveis em suas capturas de tela</p>
+        </header>
+        
+        <main class="app-main">
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone-content">
+                    <div class="upload-icon">📤</div>
+                    <h3>Arraste uma imagem aqui</h3>
+                    <p>ou <button class="link-button" id="selectFileBtn">clique para selecionar</button></p>
+                    <p class="file-info">Suporta PNG, JPEG, WebP até 50MB</p>
+                    <p class="paste-info">💡 Dica: Você também pode colar (Ctrl+V) uma imagem!</p>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" hidden>
+            </div>
+            
+            <!-- Editor Container -->
+            <div class="editor-container" id="editorContainer" style="display: none;">
+                <div class="toolbar">
+                    <div class="toolbar-section">
+                        <label for="blurRange">Intensidade do Blur:</label>
+                        <input type="range" id="blurRange" min="1" max="20" value="10">
+                        <span id="blurValue">10px</span>
+                    </div>
+                    <div class="toolbar-section">
+                        <button id="undoBtn" class="btn btn-secondary">↶ Desfazer</button>
+                        <button id="clearBtn" class="btn btn-secondary">🗑️ Limpar Tudo</button>
+                        <button id="newImageBtn" class="btn btn-secondary">📷 Nova Imagem</button>
+                    </div>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="mainCanvas"></canvas>
+                    <div class="canvas-instructions" id="canvasInstructions">
+                        <p>🖱️ Clique e arraste para selecionar áreas que deseja desfocar</p>
+                    </div>
+                </div>
+                
+                <div class="export-controls">
+                    <button id="copyBtn" class="btn btn-primary">📋 Copiar para Área de Transferência</button>
+                    <button id="downloadPngBtn" class="btn btn-primary">⬇️ Baixar PNG</button>
+                    <button id="downloadJpgBtn" class="btn btn-secondary">⬇️ Baixar JPEG</button>
+                </div>
+                
+                <div class="status-message" id="statusMessage"></div>
+            </div>
+        </main>
+        
+        <footer class="app-footer">
+            <p>✨ Ferramenta 100% local - suas imagens não saem do seu navegador</p>
+        </footer>
+    </div>
+    
+    <!-- StackBlur Library -->
+    <script src="https://cdn.jsdelivr.net/npm/stackblur-canvas@2.5.0/dist/stackblur.min.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="scripts/imageHandler.js"></script>
+    <script src="scripts/blurProcessor.js"></script>
+    <script src="scripts/exportManager.js"></script>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
